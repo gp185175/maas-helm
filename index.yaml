@@ -10,6 +10,43 @@ entries:
           url: https://github.com/grafana/grafana
     apiVersion: v2
     appVersion: 10.2.2
+    created: "2023-12-12T07:25:14.132091855Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 283457b6821677ab2178ab2a0838ee22dc1a2a27798b37625d075f05649013eb
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    keywords:
+    - monitoring
+    - metric
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    - https://github.com/grafana/helm-charts
+    type: application
+    urls:
+    - https://github.com/gp185175/maas-helm/releases/download/grafana-7.0.14/grafana-7.0.14.tgz
+    version: 7.0.14
+  - annotations:
+      artifacthub.io/license: AGPL-3.0-only
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/grafana/helm-charts
+        - name: Upstream Project
+          url: https://github.com/grafana/grafana
+    apiVersion: v2
+    appVersion: 10.2.2
     created: "2023-12-11T11:06:40.433388137Z"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: 324f32c103499cf3ede27e765902b1a897aafe0ad9f3a540aa0f1a39cefd8f5f
@@ -75,4 +112,4 @@ entries:
     urls:
     - https://github.com/gp185175/maas-helm/releases/download/grafana-7.0.12/grafana-7.0.12.tgz
     version: 7.0.12
-generated: "2023-12-11T11:06:40.433400772Z"
+generated: "2023-12-12T07:25:14.132112303Z"
