@@ -740,6 +740,13 @@ grafana.ini:
     logs: /var/log/grafana
     plugins: /var/lib/grafana/plugins
     provisioning: /etc/grafana/provisioning
+    instance_name: production
+  smtp:
+    enabled: true
+    host: "localhost:25"
+    skip_verify: false
+    from_address: admin@grafana.localhost
+    from_name: Grafana  
   analytics:
     check_for_updates: true
   log:
@@ -748,6 +755,9 @@ grafana.ini:
     url: https://grafana.net
   server:
     domain: "{{ if (and .Values.ingress.enabled .Values.ingress.hosts) }}{{ .Values.ingress.hosts | first }}{{ else }}''{{ end }}"
+  security:
+    admin_user: admin
+    admin_password: adm1ni23  
 ## grafana Authentication can be enabled with the following values on grafana.ini
  # server:
       # The full public facing url you use in browser, used for redirects and emails
