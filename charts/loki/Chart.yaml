@@ -1,9 +1,16 @@
+annotations:
+  artifacthub.io/license: AGPL-3.0-only
+  artifacthub.io/links: |
+    - name: dependencie Chart Source
+      url: https://charts.min.io/
+    - name: Upstream Project
+      url: https://grafana.github.io/helm-charts
 apiVersion: v2
 name: loki
 description: Helm chart for Grafana Loki in simple, scalable mode
 type: application
 appVersion: 2.9.3
-version: 5.41.1
+version: 5.41.2
 home: https://grafana.github.io/helm-charts
 sources:
   - https://github.com/grafana/loki
