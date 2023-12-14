@@ -274,7 +274,7 @@ loki:
       chunks: chunks
       ruler: ruler
       admin: admin
-    type: s3
+    type: azure
     s3:
       s3: null
       endpoint: null
@@ -290,9 +290,9 @@ loki:
       requestTimeout: "0s"
       enableHttp2: true
     azure:
-      accountName: null
-      accountKey: null
-      connectionString: null
+      accountName: maaslokistorage
+      accountKey: "Qu3PvOCiDMo1xBR6sRWIBaVgGnMrxomCWsG7JztiBF/lLqpeqn0QeyZ+h1wP/OZBiJJA6vpPIm5P+AStd9eTWA=="
+      connectionString: "DefaultEndpointsProtocol=https;AccountName=maaslokistorage;AccountKey=Qu3PvOCiDMo1xBR6sRWIBaVgGnMrxomCWsG7JztiBF/lLqpeqn0QeyZ+h1wP/OZBiJJA6vpPIm5P+AStd9eTWA==;EndpointSuffix=core.windows.net"
       useManagedIdentity: false
       useFederatedToken: false
       userAssignedId: null
@@ -351,7 +351,13 @@ loki:
       max_per_second: 20
       up_to: 3
   # --  Optional compactor configuration
-  compactor: {}
+  compactor: 
+     working_directory: /var/loki/retention
+     shared_store: azure
+     compaction_interval: 10m
+     retention_enabled: true
+     retention_delete_delay: 2h
+     retention_delete_worker_count: 150
   # --  Optional analytics configuration
   analytics: {}
   # --  Optional querier configuration
