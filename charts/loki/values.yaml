@@ -1377,7 +1377,7 @@ gateway:
     # -- Port of the gateway service
     port: 80
     # -- Type of the gateway service
-    type: LoadBalancer
+    type: ClusterIP
     # -- ClusterIP of the gateway service
     clusterIP: null
     # -- (int) Node port if service type is NodePort
