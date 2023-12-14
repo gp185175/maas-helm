@@ -293,7 +293,6 @@ loki:
       accountName: maaslokistorage
       accountKey: "Qu3PvOCiDMo1xBR6sRWIBaVgGnMrxomCWsG7JztiBF/lLqpeqn0QeyZ+h1wP/OZBiJJA6vpPIm5P+AStd9eTWA=="
       container_name: lokilogs
-      connectionString: "DefaultEndpointsProtocol=https;AccountName=maaslokistorage;AccountKey=Qu3PvOCiDMo1xBR6sRWIBaVgGnMrxomCWsG7JztiBF/lLqpeqn0QeyZ+h1wP/OZBiJJA6vpPIm5P+AStd9eTWA==;EndpointSuffix=core.windows.net"
       useManagedIdentity: false
       useFederatedToken: false
       userAssignedId: null
