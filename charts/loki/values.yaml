@@ -271,9 +271,9 @@ loki:
   # -- Storage config. Providing this will automatically populate all necessary storage configs in the templated config.
   storage:
     bucketNames:
-      chunks: chunks
-      ruler: ruler
-      admin: admin
+      chunks: lokilogs
+      ruler: lokilogs
+      admin: lokilogs
     type: azure
     s3:
       s3: null
