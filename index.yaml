@@ -39,6 +39,43 @@ entries:
           url: https://github.com/grafana/grafana
     apiVersion: v2
     appVersion: 10.2.2
+    created: "2023-12-15T14:42:27.250230805Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: a80d77cb4b0e2a64a93d61b8c2ad1da323414e06c0a5088cb55e2dcf54a1a3a0
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    keywords:
+    - monitoring
+    - metric
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    - https://github.com/grafana/helm-charts
+    type: application
+    urls:
+    - https://github.com/gp185175/maas-helm/releases/download/grafana-7.0.17/grafana-7.0.17.tgz
+    version: 7.0.17
+  - annotations:
+      artifacthub.io/license: AGPL-3.0-only
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/grafana/helm-charts
+        - name: Upstream Project
+          url: https://github.com/grafana/grafana
+    apiVersion: v2
+    appVersion: 10.2.2
     created: "2023-12-14T13:45:35.127429782Z"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: 37dc41a4b4e25697d80e530d1fd535efee6c45719e062dbd100d30b64638f45a
@@ -216,6 +253,45 @@ entries:
     - https://github.com/gp185175/maas-helm/releases/download/grafana-7.0.12/grafana-7.0.12.tgz
     version: 7.0.12
   loki:
+  - annotations:
+      artifacthub.io/license: AGPL-3.0-only
+      artifacthub.io/links: |
+        - name: dependencie Chart Source
+          url: https://charts.min.io/
+        - name: Upstream Project
+          url: https://grafana.github.io/helm-charts
+    apiVersion: v2
+    appVersion: 2.9.3
+    created: "2023-12-15T14:42:27.476330612Z"
+    dependencies:
+    - alias: minio
+      condition: minio.enabled
+      name: minio
+      repository: https://charts.min.io/
+      version: 4.0.15
+    - alias: grafana-agent-operator
+      condition: monitoring.selfMonitoring.grafanaAgent.installOperator
+      name: grafana-agent-operator
+      repository: https://grafana.github.io/helm-charts
+      version: 0.2.16
+    description: Helm chart for Grafana Loki in simple, scalable mode
+    digest: 4781d90774a099a76ebba0bf703c000e653f7b21c9f29b196063d8411522fb46
+    home: https://grafana.github.io/helm-charts
+    icon: https://grafana.com/docs/loki/latest/logo_and_name.png
+    maintainers:
+    - name: trevorwhitney
+    - name: jeschkies
+    name: loki
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    - https://charts.min.io/
+    - https://grafana.github.io/helm-charts
+    type: application
+    urls:
+    - https://github.com/gp185175/maas-helm/releases/download/loki-5.41.18/loki-5.41.18.tgz
+    version: 5.41.18
   - annotations:
       artifacthub.io/license: AGPL-3.0-only
       artifacthub.io/links: |
@@ -801,4 +877,4 @@ entries:
     urls:
     - https://github.com/gp185175/maas-helm/releases/download/loki-5.41.3/loki-5.41.3.tgz
     version: 5.41.3
-generated: "2023-12-15T14:23:41.68086827Z"
+generated: "2023-12-15T14:42:27.476470955Z"
