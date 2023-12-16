@@ -579,7 +579,7 @@ datasources:
         access: proxy
         editable: true
         jsonData:
-          implementation: prometheus
+          implementation: mimir
           handleGrafanaManagedAlerts: true  
 #      isDefault: true
 #    - name: CloudWatch
