@@ -336,6 +336,45 @@ entries:
           url: https://grafana.github.io/helm-charts
     apiVersion: v2
     appVersion: 2.9.3
+    created: "2023-12-18T17:59:57.456984762Z"
+    dependencies:
+    - alias: minio
+      condition: minio.enabled
+      name: minio
+      repository: https://charts.min.io/
+      version: 4.0.15
+    - alias: grafana-agent-operator
+      condition: monitoring.selfMonitoring.grafanaAgent.installOperator
+      name: grafana-agent-operator
+      repository: https://grafana.github.io/helm-charts
+      version: 0.2.16
+    description: Helm chart for Grafana Loki in simple, scalable mode
+    digest: 52e7877733570a0a262420884a48ff3158dfaba100033e6001e06b2b0d3b2686
+    home: https://grafana.github.io/helm-charts
+    icon: https://grafana.com/docs/loki/latest/logo_and_name.png
+    maintainers:
+    - name: trevorwhitney
+    - name: jeschkies
+    name: loki
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    - https://charts.min.io/
+    - https://grafana.github.io/helm-charts
+    type: application
+    urls:
+    - https://github.com/gp185175/maas-helm/releases/download/loki-5.41.28/loki-5.41.28.tgz
+    version: 5.41.28
+  - annotations:
+      artifacthub.io/license: AGPL-3.0-only
+      artifacthub.io/links: |
+        - name: dependencie Chart Source
+          url: https://charts.min.io/
+        - name: Upstream Project
+          url: https://grafana.github.io/helm-charts
+    apiVersion: v2
+    appVersion: 2.9.3
     created: "2023-12-18T17:52:48.059832265Z"
     dependencies:
     - alias: minio
@@ -1263,4 +1302,4 @@ entries:
     urls:
     - https://github.com/gp185175/maas-helm/releases/download/loki-5.41.3/loki-5.41.3.tgz
     version: 5.41.3
-generated: "2023-12-18T17:52:48.059975934Z"
+generated: "2023-12-18T17:59:57.457229068Z"
