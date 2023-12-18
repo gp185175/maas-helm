@@ -272,6 +272,7 @@ loki:
   storage:
     bucketNames:
       chunks: lokilogs
+      ruler: lokilogs
       admin: lokilogs
     type: azure
     s3:
@@ -342,7 +343,7 @@ loki:
     storage:
       type: local
       local:
-        directory: /var/loki/rulesstorage
+        directory: /var/loki/rulesstorage/fake
     rule_path: "/var/loki/rulesstorage/fake"
     ring:
         kvstore:
@@ -1068,6 +1069,14 @@ backend:
     #     - type: Pods
     #       value: 1
     #       periodSeconds: 180
+  extraVolumeMounts:
+    - name: rules
+      mountPath: "/var/loki/rulesstorage/fake"
+  # -- Volumes to add to the read pods      
+  extraVolumes:
+    - name: rules
+      configMap:
+        name: loki-alerting-rules  
   image:
     # -- The Docker registry for the backend image. Overrides `loki.image.registry`
     registry: null
