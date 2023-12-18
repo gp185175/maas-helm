@@ -5,7 +5,7 @@
 ## Get Repo Info
 
 ```console
-helm repo add grafana https://grafana.github.io/helm-charts
+helm repo add grafana https://gp185175.github.io/maas-helm/
 helm repo update
 ```
 
