@@ -945,15 +945,7 @@ read:
     # -- Target memory utilisation percentage for the read
     targetMemoryUtilizationPercentage:
     # -- Behavior policies while scaling.
-    behavior: {}
-    #adding values to rules.yaml
-    extraVolumeMounts:
-      - name: rules
-        mountPath: "/var/loki/rulesstorage/fake"
-    extraVolumes:
-      - name: rules
-        configMap:
-          name: loki-alerting-rules         
+    behavior: {}    
     #  scaleUp:
     #   stabilizationWindowSeconds: 300
     #   policies:
@@ -1003,9 +995,15 @@ read:
   # -- Lifecycle for the read container
   lifecycle: {}
   # -- Volume mounts to add to the read pods
-  extraVolumeMounts: []
-  # -- Volumes to add to the read pods
-  extraVolumes: []
+      #adding values to rules.yaml
+  extraVolumeMounts:
+    - name: rules
+      mountPath: "/var/loki/rulesstorage/fake"
+  # -- Volumes to add to the read pods      
+  extraVolumes:
+    - name: rules
+      configMap:
+        name: loki-alerting-rules       
   # -- Resource requests and limits for the read
   resources: {}
   # -- Grace period to allow the read to shutdown before it is killed
