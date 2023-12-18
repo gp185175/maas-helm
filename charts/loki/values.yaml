@@ -272,7 +272,6 @@ loki:
   storage:
     bucketNames:
       chunks: lokilogs
-      ruler: lokilogs
       admin: lokilogs
     type: azure
     s3:
