@@ -998,7 +998,7 @@ read:
       #adding values to rules.yaml
   extraVolumeMounts:
     - name: rules
-      mountPath: "/var/loki/rulestorage"
+      mountPath: /var/loki/rulestorage
   # -- Volumes to add to the read pods      
   extraVolumes:
     - name: rules
