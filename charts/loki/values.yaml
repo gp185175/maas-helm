@@ -343,8 +343,8 @@ loki:
     storage:
       type: local
       local:
-        directory: /var/loki/rulesstorage/fake
-    rule_path: "/var/loki/rulesstorage/fake"
+        directory: /var/loki/rulesstorage/
+    rule_path: "/var/loki/rulesstorage"
     ring:
         kvstore:
           store: inmemory
@@ -998,7 +998,7 @@ read:
       #adding values to rules.yaml
   extraVolumeMounts:
     - name: rules
-      mountPath: "/var/loki/rulesstorage/fake"
+      mountPath: "/var/loki/rulesstorage"
   # -- Volumes to add to the read pods      
   extraVolumes:
     - name: rules
@@ -1071,7 +1071,7 @@ backend:
     #       periodSeconds: 180
   extraVolumeMounts:
     - name: rules
-      mountPath: "/var/loki/rulesstorage/fake"
+      mountPath: "/var/loki/rulesstorage"
   # -- Volumes to add to the read pods      
   extraVolumes:
     - name: rules
