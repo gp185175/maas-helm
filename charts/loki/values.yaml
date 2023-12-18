@@ -344,7 +344,7 @@ loki:
       type: local
       local:
         directory: /var/loki/rulesstorage/
-    rule_path: "/var/loki/rulesstorage"
+    rule_path: " /tmp/rules/fake/"
     ring:
         kvstore:
           store: inmemory
