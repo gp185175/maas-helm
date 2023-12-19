@@ -568,7 +568,7 @@ datasources:
     datasources:
     - name: loki
       type: loki
-      url: http://52.252.182.104:80
+      url: http://40.116.64.28:80
       access: proxy
   alertmanager.yaml:
     apiVersion: 1
