@@ -1068,6 +1068,14 @@ backend:
     #     - type: Pods
     #       value: 1
     #       periodSeconds: 180
+  extraVolumeMounts:
+    - name: rules
+      mountPath: "/var/loki/rulestorage"
+  # -- Volumes to add to the read pods
+  extraVolumes:
+    - name: rules
+      configMap:
+        name: loki-alerting-rules 
   image:
     # -- The Docker registry for the backend image. Overrides `loki.image.registry`
     registry: null
@@ -1101,9 +1109,7 @@ backend:
   # -- Init containers to add to the backend pods
   initContainers: []
   # -- Volume mounts to add to the backend pods
-  extraVolumeMounts: []
   # -- Volumes to add to the backend pods
-  extraVolumes: []
   # -- Resource requests and limits for the backend
   resources: {}
   # -- Grace period to allow the backend to shutdown before it is killed. Especially for the ingester,
