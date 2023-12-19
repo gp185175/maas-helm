@@ -338,12 +338,12 @@ loki:
   # -- Check https://grafana.com/docs/loki/latest/configuration/#schema_config for more info on how to configure schemas
   schemaConfig: {}
   # -- Check https://grafana.com/docs/loki/latest/configuration/#ruler for more info on configuring ruler
-  rulerconfig: 
+  rulerConfig: 
     storage:
       type: local
       local:
-        directory: /var/loki/rulestorage/
-    rule_path: " /tmp/rules/fake/"
+        directory: /var/loki/rulesstorage
+    rule_path: "/var/loki/rulesstorage/fake"
     ring:
         kvstore:
           store: inmemory
@@ -863,7 +863,7 @@ write:
 # Configuration for the table-manager
 tableManager:
   # -- Specifies whether the table-manager should be enabled
-  enabled: true
+  enabled: false
   image:
     # -- The Docker registry for the table-manager image. Overrides `loki.image.registry`
     registry: null
@@ -893,12 +893,9 @@ tableManager:
   # -- Environment variables from secrets or configmaps to add to the table-manager pods
   extraEnvFrom: []
   # -- Volume mounts to add to the table-manager pods
-  extraVolumeMounts:
-  - name: data
-  mountPath: /var/loki
+  extraVolumeMounts: []
   # -- Volumes to add to the table-manager pods
-  extraVolumes: 
-  - name: data
+  extraVolumes: []
   # -- Resource requests and limits for the table-manager
   resources: {}
   # -- Containers to add to the table-manager pods
@@ -1000,7 +997,7 @@ read:
       #adding values to rules.yaml
   extraVolumeMounts:
     - name: rules
-      mountPath: /var/loki/rulestorage
+      mountPath: "/var/loki/rulesstorage/fake"
   # -- Volumes to add to the read pods      
   extraVolumes:
     - name: rules
@@ -1071,14 +1068,6 @@ backend:
     #     - type: Pods
     #       value: 1
     #       periodSeconds: 180
-  extraVolumeMounts:
-    - name: rules
-      mountPath: "/var/loki/rulestorage"
-  # -- Volumes to add to the read pods
-  extraVolumes:
-    - name: rules
-      configMap:
-        name: loki-alerting-rules  
   image:
     # -- The Docker registry for the backend image. Overrides `loki.image.registry`
     registry: null
@@ -1112,7 +1101,9 @@ backend:
   # -- Init containers to add to the backend pods
   initContainers: []
   # -- Volume mounts to add to the backend pods
+  extraVolumeMounts: []
   # -- Volumes to add to the backend pods
+  extraVolumes: []
   # -- Resource requests and limits for the backend
   resources: {}
   # -- Grace period to allow the backend to shutdown before it is killed. Especially for the ingester,
