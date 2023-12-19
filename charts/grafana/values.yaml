@@ -575,11 +575,11 @@ datasources:
     datasources:
       - name: Alertmanager
         type: alertmanager
-        url: http://20.80.15.81:80
+        url: http://172.183.64.58:9093
         access: proxy
         editable: true
         jsonData:
-          implementation: mimir
+          implementation: prometheus
           handleGrafanaManagedAlerts: true  
 #      isDefault: true
 #    - name: CloudWatch

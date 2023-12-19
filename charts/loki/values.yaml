@@ -347,7 +347,7 @@ loki:
     ring:
         kvstore:
           store: inmemory
-    alertmanager_url: http://20.80.15.81:80
+    alertmanager_url: http://172.183.64.58:9093
     enable_alertmanager_v2: true
   # -- Structured loki configuration, takes precedence over `loki.config`, `loki.schemaConfig`, `loki.storageConfig`
   structuredConfig: {}
