@@ -1110,9 +1110,7 @@ backend:
   # -- Init containers to add to the backend pods
   initContainers: []
   # -- Volume mounts to add to the backend pods
-  extraVolumeMounts: []
   # -- Volumes to add to the backend pods
-  extraVolumes: []
   # -- Resource requests and limits for the backend
   resources: {}
   # -- Grace period to allow the backend to shutdown before it is killed. Especially for the ingester,
