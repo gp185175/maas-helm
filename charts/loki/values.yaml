@@ -385,7 +385,8 @@ loki:
   frontend_worker:
     scheduler_address: '{{ include "loki.querySchedulerAddress" . }}'
   # -- Optional distributor configuration
-  distributor: {}
+  distributor:
+    write_failures_logging: 1000KB
   # -- Enable tracing
   tracing:
     enabled: false
