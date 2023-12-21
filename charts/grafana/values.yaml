@@ -570,6 +570,9 @@ datasources:
       type: loki
       url: http://40.116.64.28:80
       access: proxy
+      jsonData:
+        maxLines: 1000
+        timeout: 120
   alertmanager.yaml:
     apiVersion: 1
     datasources:
