@@ -766,6 +766,8 @@ grafana.ini:
     url: https://grafana.net
   server:
     domain: "{{ if (and .Values.ingress.enabled .Values.ingress.hosts) }}{{ .Values.ingress.hosts | first }}{{ else }}''{{ end }}"
+  dataproxy:
+    timeout: 600
   security:
     admin_user: admin
     admin_password: adm1ni23  
