@@ -1588,15 +1588,6 @@ extraObjects:
                  job: jdbc
                annotations:
                  summary: Connection validation for jdbc pg-connection failed
-             - alert: promtail
-               expr: |
-                 sum by(job) (rate({job=~ "ams*.*"} [1m]))
-               for: 30s
-               labels:
-                   severity: verbose
-                   job: promtail_alert
-               annotations:
-                   summary: Promtail is down.
 sidecar:
   image:
     # -- The Docker registry and image for the k8s sidecar
