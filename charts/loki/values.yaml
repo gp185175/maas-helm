@@ -386,7 +386,8 @@ loki:
     scheduler_address: '{{ include "loki.querySchedulerAddress" . }}'
   # -- Optional distributor configuration
   distributor:
-    write_failures_logging: 1m
+    write_failures_logging:
+      rate: 1M
   # -- Enable tracing
   tracing:
     enabled: false
