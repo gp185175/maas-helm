@@ -375,7 +375,13 @@ loki:
   frontend_worker:
     scheduler_address: '{{ include "loki.querySchedulerAddress" . }}'
   # -- Optional distributor configuration
-  distributor: {}
+  distributor:
+    write_failures_logging:
+    # Experimental and subject to change. Log volume allowed (per second).
+    # Default: 1KB.
+    # CLI flag: -distributor.write-failures-logging.rate
+    rate: 10KB
+
   # -- Enable tracing
   tracing:
     enabled: false
