@@ -282,7 +282,6 @@ config:
   receivers:
     - name: slack
       slack_configs:
-      - channel: "ams_staterbros"
       - send_resolved: true
         footer: "demo-dev-alertmanager"
   route:
