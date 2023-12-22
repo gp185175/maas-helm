@@ -328,7 +328,9 @@ configmapReload:
     #   readOnly: true
 
   ## Optionally specify extra environment variables to add to alertmanager container
-  extraEnv: []
+  extraEnv:
+    - name: cluster.advertise-address
+      value: 172.183.64.58:9093
     # - name: FOO
     #   value: BAR
 
