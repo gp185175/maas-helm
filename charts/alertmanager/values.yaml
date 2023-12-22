@@ -282,7 +282,7 @@ config:
   receivers:
     - name: slack
       slack_configs:
-        channel: "ams_staterbros"
+        channel: "ams_alerts_testing"
         send_resolved: true
         footer: "demo-dev-alertmanager"
   route:
