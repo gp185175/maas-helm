@@ -282,7 +282,7 @@ config:
   receivers:
     - name: slack
       slack_configs:
-      - slack_api_url: https://hooks.slack.com/services/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
+      - api_url: https://hooks.slack.com/services/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
       - channel: "ams_staterbros"
       - send_resolved: true
         footer: "demo-dev-alertmanager"
