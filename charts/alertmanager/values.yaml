@@ -273,7 +273,7 @@ config:
   enabled: true
   global: 
     resolve_timeout: 5m
-    slack_api_url: https://hooks.slack.com/services/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
+    slack_api_url: https://hooks.slack.com/services/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
     # slack_api_url: ''
 
   templates:
