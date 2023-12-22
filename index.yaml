@@ -8,6 +8,34 @@ entries:
           url: https://github.com/prometheus-community/helm-charts
     apiVersion: v2
     appVersion: v0.26.0
+    created: "2023-12-22T06:44:22.450386478Z"
+    description: The Alertmanager handles alerts sent by client applications such
+      as the Prometheus server.
+    digest: 9e4ed6a027d0afe459602a28d3bbf59296dda5603cff0fb3d9fa679bc229247d
+    home: https://prometheus.io/
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - monitoring
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: monotek23@gmail.com
+      name: monotek
+    - email: naseem@transit.app
+      name: naseemkullah
+    name: alertmanager
+    sources:
+    - https://github.com/prometheus/alertmanager
+    type: application
+    urls:
+    - https://github.com/gp185175/maas-helm/releases/download/alertmanager-1.7.8/alertmanager-1.7.8.tgz
+    version: 1.7.8
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/prometheus-community/helm-charts
+    apiVersion: v2
+    appVersion: v0.26.0
     created: "2023-12-22T05:39:39.884081727Z"
     description: The Alertmanager handles alerts sent by client applications such
       as the Prometheus server.
@@ -198,6 +226,43 @@ entries:
     - https://github.com/gp185175/maas-helm/releases/download/alertmanager-1.7.0/alertmanager-1.7.0.tgz
     version: 1.7.0
   grafana:
+  - annotations:
+      artifacthub.io/license: AGPL-3.0-only
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/grafana/helm-charts
+        - name: Upstream Project
+          url: https://github.com/grafana/grafana
+    apiVersion: v2
+    appVersion: 10.2.2
+    created: "2023-12-22T06:44:22.587893692Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: b6ce1e9cc8257426fc78084186d0c44cec8e11ece7f09b94d81efb80eb7d525e
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    keywords:
+    - monitoring
+    - metric
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    - https://github.com/grafana/helm-charts
+    type: application
+    urls:
+    - https://github.com/gp185175/maas-helm/releases/download/grafana-7.0.25/grafana-7.0.25.tgz
+    version: 7.0.25
   - annotations:
       artifacthub.io/license: AGPL-3.0-only
       artifacthub.io/links: |
@@ -2632,4 +2697,4 @@ entries:
     urls:
     - https://github.com/gp185175/maas-helm/releases/download/loki-5.41.3/loki-5.41.3.tgz
     version: 5.41.3
-generated: "2023-12-22T05:39:39.88427651Z"
+generated: "2023-12-22T06:44:22.588082812Z"
