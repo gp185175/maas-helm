@@ -758,7 +758,7 @@ grafana.ini:
     instance_name: production
   smtp:
     enabled: true
-    host: "http://20.88.21.154:25"
+    host: "20.88.21.154:25"
     skip_verify: false
     from_address: admin@grafana.localhost
     from_name: Grafana  
