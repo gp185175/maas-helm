@@ -282,8 +282,7 @@ config:
   receivers:
     - name: slack
       slack_configs:
-        channel: "ams_alerts_testing"
-        send_resolved: true
+      - send_resolved: true
         footer: "demo-dev-alertmanager"
   route:
     group_by: ['severity','job']
