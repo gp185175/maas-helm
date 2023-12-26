@@ -8,6 +8,34 @@ entries:
           url: https://github.com/prometheus-community/helm-charts
     apiVersion: v2
     appVersion: v0.26.0
+    created: "2023-12-26T09:23:06.563202776Z"
+    description: The Alertmanager handles alerts sent by client applications such
+      as the Prometheus server.
+    digest: 12f7b04f1a8e3e9ae2d50cb142265a487cd69efc4d82ff3b7c6c329c316cb777
+    home: https://prometheus.io/
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - monitoring
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: monotek23@gmail.com
+      name: monotek
+    - email: naseem@transit.app
+      name: naseemkullah
+    name: alertmanager
+    sources:
+    - https://github.com/prometheus/alertmanager
+    type: application
+    urls:
+    - https://github.com/gp185175/maas-helm/releases/download/alertmanager-1.7.24/alertmanager-1.7.24.tgz
+    version: 1.7.24
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/prometheus-community/helm-charts
+    apiVersion: v2
+    appVersion: v0.26.0
     created: "2023-12-22T14:54:48.216456999Z"
     description: The Alertmanager handles alerts sent by client applications such
       as the Prometheus server.
@@ -3191,4 +3219,4 @@ entries:
     urls:
     - https://github.com/gp185175/maas-helm/releases/download/loki-5.41.3/loki-5.41.3.tgz
     version: 5.41.3
-generated: "2023-12-22T14:54:48.216766002Z"
+generated: "2023-12-26T09:23:06.563450941Z"
