@@ -1570,24 +1570,6 @@ minio:
       memory: 128Mi
 # Create extra manifests via values. Would be passed through `tpl` for templating
 extraObjects: 
- - apiVersion: v1
-   kind: ConfigMap
-   metadata:
-     name: loki-alerting-rules
-   data:
-     loki-alerting-rules.yaml: |-
-       groups:
-         - name: JDBCAlert
-           rules:
-             - alert: JDBCAlert
-               expr: |
-                 count_over_time({namespace="ng-dev-flux"} |~ "(?i)Failed to validate connection org.postgresql.jdbc.PgConnection" [1000m]) > 0
-               for: 30s
-               labels:
-                 severity: medium
-                 job: jdbc
-               annotations:
-                 summary: Connection validation for jdbc pg-connection failed
 sidecar:
   image:
     # -- The Docker registry and image for the k8s sidecar
