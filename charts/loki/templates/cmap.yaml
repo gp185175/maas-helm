@@ -5,26 +5,97 @@ metadata:
 data:
   loki-alerting-rules.yaml: |-
     groups:
-      - name: JDBCAlert
-        rules:
-          - alert: JDBCAlert
-            expr: |
-              count_over_time({namespace="ng-dev-flux"} |~ "(?i)Failed to validate connection org.postgresql.jdbc.PgConnection" [1000m]) > 0
-            for: 30s
-            labels:
+    {{- range $key, $val  := .Values.namespaces }}
+    - name: {{ $key }} prod rules
+      rules:
+        - alert: IPL Failed - {{ $key }} prod
+          expr: |
+            count_over_time({namespace={{ $val }}}  |~ ".*IPL_FAIL.*" [1m] ) > 0
+          for: 30s
+          labels:
               severity: medium
-              job: jdbc
-            annotations:
-              summary: Connection validation for jdbc pg-connection failed
-    groups:
-      - name: BEVMO prod rules
-        rules:
-          - alert: IPL Failed - BEVMO prod
-            expr: |
-              count_over_time({namespace="bevmo-dev-flux"}  |~ ".*IPL_FAIL.*" [1m] ) > 0
-            for: 30s
-            labels:
-                severity: medium
-                error: IPL_FAIL
-            annotations:
-                summary: IPL_FAIL in bevmo prod           
+              error: IPL_FAIL
+          annotations:
+              summary: IPL_FAIL in {{ $key }} prod 
+        - alert: IF Failed - {{ $key }} prod
+          expr: |
+            count_over_time({namespace={{ $val }}}  |~ "log: \"*FETCH_FAIL*\"" [1m] ) > 0
+          for: 30s
+          labels:
+              severity: medium
+              error: IF_FAIL
+          annotations:
+              summary: Fetch FAIL error in {{ $key }} prod
+        - alert: NR1 mount Failed - {{ $key }} prod
+          expr: |
+            count_over_time({namespace={{ $val }}}  |~ "\".*Failed to write to file in directory /etc/ams/agent-mount-point/catalog-archive.*\"" [1m] ) > 0
+          for: 30s
+          labels:
+              severity: medium
+              error: NR1_MOUNT_FAILED
+          annotations:
+              summary: NR1 mount getting failed in {{ $key }} prod 
+        - alert: SERIAL Failed - {{ $key }} prod
+          expr: |
+            count_over_time({namespace={{ $val }}}  |~ "\"log: \".*SERIAL_FAIL.*\"" [1m] ) > 0
+          for: 30s
+          labels:
+              severity: medium
+              error: SERIAL_FAILED
+          annotations:
+              summary: Serial fail error in {{ $key }} prod
+        - alert: UE Sync Failed - {{ $key }} prod
+          expr: |
+            count_over_time({namespace={{ $val }}}  |~ "message: \"*Unable to download settings file, Sync Failed*\"" [1m] ) > 0
+          for: 30s
+          labels:
+              severity: medium
+              error: UE_SYNC_FAIL
+          annotations:
+              summary: UE sync fail to download setting file
+        - alert: ULP UE Connection Failed - {{ $key }} prod
+          expr: |
+            count_over_time({namespace={{ $val }}}  |~ "message: \".*AMS Server Socket comm error connecting to MASTER server*\"" [1m] ) > 0
+          for: 30s
+          labels:
+              severity: medium
+              error: UE_CONNECTION_FAILED
+          annotations:
+              summary: UE connection getting failed in {{ $key }} prod            
+        - alert: Update Location Failed in RT - {{ $key }} prod
+          expr: |
+            count_over_time({namespace={{ $val }}}  |~ "message: \".*UpdateLocationMd5 failed, but updates to other databases will be committed.*\"" [1m] ) > 0
+          for: 30s
+          labels:
+              severity: medium
+              error: UPDATE_LOCATION_FAILED
+          annotations:
+              summary: Update location getting failed in {{ $key }} prod
+        - alert: ODBC Error - {{ $key }} prod
+          expr: |
+            count_over_time({namespace={{ $val }}}  |~ "log: \".*error [Microsoft][ODBC Driver 18 for SQL Server]Communication link failure.*\"" [1m] ) > 0
+          for: 30s
+          labels:
+              severity: medium
+              error: ODBC_ERROR
+          annotations:
+              summary: ODBC communication failure in {{ $key }} prod
+        - alert: Max pool Connections Reached - {{ $key }} prod
+          expr: |
+            count_over_time({namespace={{ $val }}}  |~ "message: \".*The timeout period elapsed prior to obtaining a connection from the pool.*\"" [1m] ) > 0
+          for: 30s
+          labels:
+              severity: medium
+              error: MAX_POOL_CONNECTION
+          annotations:
+              summary: Max pool Connections Reached in {{ $key }} prod
+        - alert: Semaphore Error - {{ $key }} prod
+          expr: |
+            count_over_time({namespace={{ $val }}}  |~ "message: \".*The semaphore timeout period has expired.*\" [1m] ) > 0
+          for: 30s
+          labels:
+              severity: medium
+              error: SEMAPHORE_TIMEOUT
+          annotations:
+              summary: The semaphore timeout period has expired in {{ $key }} prod 
+    {{- end}}

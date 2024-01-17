@@ -1628,3 +1628,10 @@ sidecar:
     watchClientTimeout: 60
     # -- Log level of the sidecar container.
     logLevel: INFO
+namespaces:
+  bevmo : bevmo-dev-flux
+  bgc : bgc-dev-flux
+  fcl : fcl-dev-flux
+  petsmart: psmart-dev-flux
+  stbr: stbr-dev-flux
+  spartan: sptn-dev-flux    
