@@ -993,7 +993,7 @@ read:
   selectorLabels: {}
   service:
     # -- Port of the read service
-    port: 3000
+    port: 3100
     # -- Type of the read service
     type: LoadBalancer
     # -- ClusterIP of the read service

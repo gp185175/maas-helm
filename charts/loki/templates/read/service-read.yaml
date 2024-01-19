@@ -22,7 +22,7 @@ metadata:
     {{- toYaml . | nindent 4}}
     {{- end }}
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - name: http-metrics
       port: 3100
