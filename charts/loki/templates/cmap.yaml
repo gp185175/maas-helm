@@ -6,96 +6,128 @@ data:
   loki-alerting-rules.yaml: |-
     groups:
     {{- range $key, $val  := .Values.namespaces }}
-    - name: {{ $key }} prod rules
+    - name: {{ $key }} rules
       rules:
-        - alert: IPL Failed - {{ $key }} prod
+        - alert: IPL Failed - {{ $key }}
           expr: |
-            count_over_time({namespace={{ $val }}}  |~ ".*IPL_FAIL.*" [1m] ) > 0
+            count_over_time({namespace="{{ $val }}"}  |~ ".*IPL_FAIL.*" [1m] ) > 0
           for: 30s
           labels:
-              severity: medium
+              severity: critical
               error: IPL_FAIL
           annotations:
-              summary: IPL_FAIL in {{ $key }} prod 
-        - alert: IF Failed - {{ $key }} prod
+              summary: IPL_FAIL in {{ $key }} 
+        - alert: IF Failed - {{ $key }}
           expr: |
-            count_over_time({namespace={{ $val }}}  |~ "log: \"*FETCH_FAIL*\"" [1m] ) > 0
+            count_over_time({namespace="{{ $val }}"}  |~ "log: \"*FETCH_FAIL*\"" [1m] ) > 0
           for: 30s
           labels:
-              severity: medium
+              severity: critical
               error: IF_FAIL
           annotations:
-              summary: Fetch FAIL error in {{ $key }} prod
-        - alert: NR1 mount Failed - {{ $key }} prod
+              summary: Fetch FAIL error in {{ $key }}
+        
+        - alert: SERIAL Failed - {{ $key }}
           expr: |
-            count_over_time({namespace={{ $val }}}  |~ "\".*Failed to write to file in directory /etc/ams/agent-mount-point/catalog-archive.*\"" [1m] ) > 0
+            count_over_time({namespace="{{ $val }}"}  |~ "\"log: \".*SERIAL_FAIL.*\"" [1m] ) > 0
           for: 30s
           labels:
-              severity: medium
-              error: NR1_MOUNT_FAILED
-          annotations:
-              summary: NR1 mount getting failed in {{ $key }} prod 
-        - alert: SERIAL Failed - {{ $key }} prod
-          expr: |
-            count_over_time({namespace={{ $val }}}  |~ "\"log: \".*SERIAL_FAIL.*\"" [1m] ) > 0
-          for: 30s
-          labels:
-              severity: medium
+              severity: critical
               error: SERIAL_FAILED
           annotations:
-              summary: Serial fail error in {{ $key }} prod
-        - alert: UE Sync Failed - {{ $key }} prod
+              summary: Serial fail error in {{ $key }}
+        
+        - alert: ODBC Error - {{ $key }}
           expr: |
-            count_over_time({namespace={{ $val }}}  |~ "message: \"*Unable to download settings file, Sync Failed*\"" [1m] ) > 0
+            count_over_time({namespace="{{ $val }}"}  |~ "log: \".*error [Microsoft][ODBC Driver 18 for SQL Server]Communication link failure.*\"" [1m] ) > 0
+          for: 30s
+          labels:
+              severity: critical
+              error: ODBC_ERROR
+          annotations:
+              summary: ODBC communication failure in {{ $key }}
+    {{- end}}
+    - name: nr1 Mount Failed rules
+    {{- range $key, $val := .Values.nr1MountFailedHosts}}
+      rules:
+        - alert: NR1 mount Failed - {{ $key }}
+          expr: |
+            count_over_time({hostname="{{ $val }}"}  |~ "\".*Failed to write to file in directory /etc/ams/agent-mount-point/catalog-archive.*\"" [1m] ) > 0
+          for: 30s
+          labels:
+              severity: medium
+               error: NR1_MOUNT_FAILED
+           annotations:
+              summary: NR1 mount getting failed in {{ $key }} 
+    {{- end }}
+    - name: ue / ulp rules
+    {{- range $key, $val := .Values.ueHosts }}
+      rules:
+        - alert: UE Sync Failed - {{ $key }}
+          expr: |
+            count_over_time({hostname="{{ $val }}"}  |~ "message: \"*Unable to download settings file, Sync Failed*\"" [1m] ) > 0
           for: 30s
           labels:
               severity: medium
               error: UE_SYNC_FAIL
           annotations:
               summary: UE sync fail to download setting file
-        - alert: ULP UE Connection Failed - {{ $key }} prod
+      
+        - alert: ULP UE Connection Failed - {{ $key }}
           expr: |
-            count_over_time({namespace={{ $val }}}  |~ "message: \".*AMS Server Socket comm error connecting to MASTER server*\"" [1m] ) > 0
+            count_over_time({hostname="{{ $val }}"}  |~ "message: \".*AMS Server Socket comm error connecting to MASTER server*\"" [1m] ) > 0
           for: 30s
           labels:
               severity: medium
               error: UE_CONNECTION_FAILED
           annotations:
-              summary: UE connection getting failed in {{ $key }} prod            
-        - alert: Update Location Failed in RT - {{ $key }} prod
+              summary: UE connection getting failed in {{ $key }}
+    {{- end }}
+    - name: update Locations rules
+    {{- range $key, $val := .Values.updateLocationHosts }}
+      rules:
+        - alert: Update Location Failed in RT - {{ $key }}
           expr: |
-            count_over_time({namespace={{ $val }}}  |~ "message: \".*UpdateLocationMd5 failed, but updates to other databases will be committed.*\"" [1m] ) > 0
+            count_over_time({hostname="{{ $val }}"}  |~ "message: \".*UpdateLocationMd5 failed, but updates to other databases will be committed.*\"" [1m] ) > 0
           for: 30s
           labels:
               severity: medium
               error: UPDATE_LOCATION_FAILED
           annotations:
-              summary: Update location getting failed in {{ $key }} prod
-        - alert: ODBC Error - {{ $key }} prod
+              summary: Update location getting failed in {{ $key }}
+    {{- end }}
+    - name: logix Web hosts rules
+    {{- range $key, $val := .Values.logixWebHosts}}
+      rules:
+        - alert: Semaphore Error - {{ $key }}
           expr: |
-            count_over_time({namespace={{ $val }}}  |~ "log: \".*error [Microsoft][ODBC Driver 18 for SQL Server]Communication link failure.*\"" [1m] ) > 0
-          for: 30s
-          labels:
-              severity: medium
-              error: ODBC_ERROR
-          annotations:
-              summary: ODBC communication failure in {{ $key }} prod
-        - alert: Max pool Connections Reached - {{ $key }} prod
-          expr: |
-            count_over_time({namespace={{ $val }}}  |~ "message: \".*The timeout period elapsed prior to obtaining a connection from the pool.*\"" [1m] ) > 0
-          for: 30s
-          labels:
-              severity: medium
-              error: MAX_POOL_CONNECTION
-          annotations:
-              summary: Max pool Connections Reached in {{ $key }} prod
-        - alert: Semaphore Error - {{ $key }} prod
-          expr: |
-            count_over_time({namespace={{ $val }}}  |~ "message: \".*The semaphore timeout period has expired.*\" [1m] ) > 0
+            count_over_time({hostname="{{ $val }}"}  |~ "message: \".*The semaphore timeout period has expired.*\"" [1m] ) > 0
           for: 30s
           labels:
               severity: medium
               error: SEMAPHORE_TIMEOUT
           annotations:
-              summary: The semaphore timeout period has expired in {{ $key }} prod 
-    {{- end}}
+              summary: The semaphore timeout period has expired in {{ $key }} 
+    {{- end }}
+    - name: Logix Agent rules
+    {{- range $key, $val := .Values.logixAgentsHosts }}
+      rules:
+        - alert: Max pool Connections Reached - {{ $key }}
+          expr: |
+            count_over_time({hostname="{{ $val }}"}  |~ "message: \".*The timeout period elapsed prior to obtaining a connection from the pool.*\"" [1m] ) > 0
+          for: 30s
+          labels:
+              severity: medium
+              error: MAX_POOL_CONNECTION
+          annotations:
+              summary: Max pool Connections Reached in {{ $key }}
+        - alert: Semaphore Error - {{ $key }}
+          expr: |
+            count_over_time({hostname="{{ $val }}"}  |~ "message: \".*The semaphore timeout period has expired.*\"" [1m] ) > 0
+          for: 30s
+          labels:
+              severity: medium
+              error: SEMAPHORE_TIMEOUT
+          annotations:
+              summary: The semaphore timeout period has expired in {{ $key }} 
+    {{- end }}

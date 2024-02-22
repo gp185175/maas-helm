@@ -273,7 +273,7 @@ config:
   enabled: true
   global: 
     resolve_timeout: 5m
-    slack_api_url: https://hooks.slack.com/services/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
+    # slack_api_url: https://hooks.slack.com/services/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
     # slack_api_url: 'https://hooks.slack.com/services/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'
 
   templates:
@@ -282,15 +282,62 @@ config:
   receivers:
     - name: slack
       slack_configs:
-      - send_resolved: true
+      # - api_url: https://hooks.slack.com/services/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
+        send_resolved: true
+        color: '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
+        title: '{{ template "slack.default.title" . }}'
+        title_link: '{{ template "slack.default.titlelink" . }}'
+        pretext: '{{ .CommonAnnotations.summary }}'
+        text: |-
+          {{ range .Alerts }}
+            *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+            *Description:* {{ .Annotations.description }}
+            *Details:*
+            {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+            {{ end }}
+          {{ end }}
+        fallback: '{{ template "slack.default.fallback" . }}'
+        icon_emoji: '{{ template "slack.default.iconemoji" . }}'
+        icon_url: '{{ template "slack.default.iconurl" . }}'
+        footer: "demo-dev-alertmanager"  
+    - name: slack_critical
+      slack_configs:
+      # - api_url: https://hooks.slack.com/services/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
+        send_resolved: true
+        color: '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
+        title: '{{ template "slack.default.title" . }}'
+        title_link: '{{ template "slack.default.titlelink" . }}'
+        pretext: '{{ .CommonAnnotations.summary }}'
+        text: |-
+          {{ range .Alerts }}
+            *Alert:* {{ .Annotations.summary }} - `{{ .Labels.severity }}`
+            *Description:* {{ .Annotations.description }}
+            *Details:*
+            {{ range .Labels.SortedPairs }} • *{{ .Name }}:* `{{ .Value }}`
+            {{ end }}
+          {{ end }}
+        fallback: '{{ template "slack.default.fallback" . }}'
+        icon_emoji: '{{ template "slack.default.iconemoji" . }}'
+        icon_url: '{{ template "slack.default.iconurl" . }}'  
         footer: "demo-dev-alertmanager"
   route:
-    group_by: ['severity','job']
+    group_by: ['severity']
     group_wait: 30s
     group_interval: 1m
     repeat_interval: 6h
     receiver: slack
-
+    routes:
+      - receiver: "slack"
+        grop_wait: 30s
+        matchers:
+        -  severity: medium
+        continue: true
+      
+      - receiver: "slack_critical"
+        group_wait: 30s
+        matchers:
+        -  severity: critical
+        continue: true
 
 ## Monitors ConfigMap changes and POSTs to a URL
 ## Ref: https://github.com/prometheus-operator/prometheus-operator/tree/main/cmd/prometheus-config-reloader

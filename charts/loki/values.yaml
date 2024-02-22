@@ -353,8 +353,9 @@ loki:
     storage:
       type: local
       local:
-        directory: /var/loki/rulestorage
+        directory: /var/loki/rulestorage/
     rule_path: "/tmp/rules/fake/"
+    enable_api: true
     ring:
         kvstore:
           store: inmemory
@@ -1638,10 +1639,68 @@ sidecar:
     watchClientTimeout: 60
     # -- Log level of the sidecar container.
     logLevel: INFO
+
+# cluster namespaces for different customers  
 namespaces:
-  bevmo : bevmo-dev-flux
-  bgc : bgc-dev-flux
-  fcl : fcl-dev-flux
-  petsmart: psmart-dev-flux
-  stbr: stbr-dev-flux
-  spartan: sptn-dev-flux    
+  bevmoDev: bevmo-dev-flux
+  bevmoPrep: bevmo-prep-flux
+  bgcDev: bgc-dev-flux
+  bgcPrep: bgc-prep-flux
+  fclDev: fcl-dev-flux
+  fclPrep: fcl-prep-flux
+  psmrtDev: psmrt-dev-flux
+  psmrtPrep: psmrt-prep-flux
+  stbrDev: stbr-dev-flux
+  stbrPrep: stbr-prep-flux
+  sptnDev: sptn-dev-flux
+  sptnPrep: sptn-prep-flux
+
+# VM'S having NR1 adapter
+nr1MountFailedHosts:
+  bevmoDev: nua01-pmbst-vm1
+  fclDev: nua01-fcadp-vm0
+  ngDev: nua01-habst-vm1
+
+# VM's having Logix web
+logixWebHosts:
+  bevmoDev0: nua01-lgbby-vm0
+  bevmoDev1: nua01-lgbby-vm1
+  bgcDev: nua01-bgclg-vm0
+  fclDev: nua01-fcllg-vm1
+  kgoDev0: nua01-kglg-vm0
+  kgoDev1: nua01-kglg-vm1
+  ngDev: nua01-lgaks-vm0	
+  psmrtDev: nua01-1lg-vm1
+  sptnDev0: nua01-lgspt-vm0
+  sptnDev1: nua01-lgspt-vm1
+  stbrDev0: nua01-stblg-vm0
+  stbrDev1: nua01-stblg-vm1
+  wincoDev: nua01-d1lgx-vm0
+
+# Vm's having Ulp/ Ue
+ueHosts:
+  bevmoDev: nua01-bvdul-vm0
+  bgcDev: nua01-bgcue-vm0
+  fclDev: nua01-fclue-vm0
+  ngDev: nua01-nr1-vm0
+  psmrtDev: nua01-1ue-vm0
+  sptnDev: nua01-spue-vm0
+  stbrDev: nua01-sdulp-vm0
+  wincoDev: nua01-d1ulp-vm0
+
+# Vm's having Logix RT promotions
+updateLocationHosts:
+  bevmoDev : nua01-bvrt-vm0
+  sptnDev: nua01-sprt-vm0
+
+# VM's having logix Agents installed
+logixAgentsHosts:
+  bevmoDev: nua01-bsq-vm1
+  bgcDev: nua01-bgcag-vm0
+  fclDev: nua01-fclag-vm1
+  kgoDev: nua01-kgag-vm0
+  ngDev: nua01-logst-vm1
+  psmrtDev: nua01-1ag-vm1
+  sptnDev: nua01-agspt-vm1
+  stbrDev: nua01-stbag-vm0
+  wincoDev: nua01-d1agt-vm0   
