@@ -877,7 +877,7 @@ write:
 # Configuration for the table-manager
 tableManager:
   # -- Specifies whether the table-manager should be enabled
-  enabled: true
+  enabled: false
   image:
     # -- The Docker registry for the table-manager image. Overrides `loki.image.registry`
     registry: null
@@ -1098,7 +1098,7 @@ backend:
     #       periodSeconds: 180
   extraVolumeMounts:
     - name: rules
-      mountPath: "/var/loki/rulestorage"
+      mountPath: "/var/loki/rulestorage/fake"
   # -- Volumes to add to the read pods
   extraVolumes:
     - name: rules
