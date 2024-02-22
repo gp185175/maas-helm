@@ -8,6 +8,34 @@ entries:
           url: https://github.com/prometheus-community/helm-charts
     apiVersion: v2
     appVersion: v0.26.0
+    created: "2024-02-22T07:33:32.600176454Z"
+    description: The Alertmanager handles alerts sent by client applications such
+      as the Prometheus server.
+    digest: 9903c8c4acda4fc63b7468d8921bcd765424952427656f98294e7e1768460c45
+    home: https://prometheus.io/
+    icon: https://raw.githubusercontent.com/prometheus/prometheus.github.io/master/assets/prometheus_logo-cb55bb5c346.png
+    keywords:
+    - monitoring
+    kubeVersion: '>=1.19.0-0'
+    maintainers:
+    - email: monotek23@gmail.com
+      name: monotek
+    - email: naseem@transit.app
+      name: naseemkullah
+    name: alertmanager
+    sources:
+    - https://github.com/prometheus/alertmanager
+    type: application
+    urls:
+    - https://github.com/gp185175/maas-helm/releases/download/alertmanager-1.7.25/alertmanager-1.7.25.tgz
+    version: 1.7.25
+  - annotations:
+      artifacthub.io/license: Apache-2.0
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/prometheus-community/helm-charts
+    apiVersion: v2
+    appVersion: v0.26.0
     created: "2023-12-26T09:23:06.563202776Z"
     description: The Alertmanager handles alerts sent by client applications such
       as the Prometheus server.
@@ -1230,6 +1258,45 @@ entries:
     - https://github.com/gp185175/maas-helm/releases/download/grafana-7.0.12/grafana-7.0.12.tgz
     version: 7.0.12
   loki:
+  - annotations:
+      artifacthub.io/license: AGPL-3.0-only
+      artifacthub.io/links: |
+        - name: dependencie Chart Source
+          url: https://charts.min.io/
+        - name: Upstream Project
+          url: https://grafana.github.io/helm-charts
+    apiVersion: v2
+    appVersion: 2.9.3
+    created: "2024-02-22T07:33:32.739397454Z"
+    dependencies:
+    - alias: minio
+      condition: minio.enabled
+      name: minio
+      repository: https://charts.min.io/
+      version: 4.0.15
+    - alias: grafana-agent-operator
+      condition: monitoring.selfMonitoring.grafanaAgent.installOperator
+      name: grafana-agent-operator
+      repository: https://grafana.github.io/helm-charts
+      version: 0.2.16
+    description: Helm chart for Grafana Loki in simple, scalable mode
+    digest: f044265d99741570336e8243607155407df8bd3142e64923f51b2940a42a8bb5
+    home: https://grafana.github.io/helm-charts
+    icon: https://grafana.com/docs/loki/latest/logo_and_name.png
+    maintainers:
+    - name: trevorwhitney
+    - name: jeschkies
+    name: loki
+    sources:
+    - https://github.com/grafana/loki
+    - https://grafana.com/oss/loki/
+    - https://grafana.com/docs/loki/latest/
+    - https://charts.min.io/
+    - https://grafana.github.io/helm-charts
+    type: application
+    urls:
+    - https://github.com/gp185175/maas-helm/releases/download/loki-5.41.60/loki-5.41.60.tgz
+    version: 5.41.60
   - annotations:
       artifacthub.io/license: AGPL-3.0-only
       artifacthub.io/links: |
@@ -3375,4 +3442,4 @@ entries:
     urls:
     - https://github.com/gp185175/maas-helm/releases/download/loki-5.41.3/loki-5.41.3.tgz
     version: 5.41.3
-generated: "2024-01-19T05:28:32.586687234Z"
+generated: "2024-02-22T07:33:32.73970554Z"
