@@ -353,8 +353,8 @@ loki:
     storage:
       type: local
       local:
-        directory: /var/loki/rulestorage
-    rule_path: "/tmp/rules/fake"
+        directory: /var/loki/rulestorage/
+    rule_path: "/tmp/rules/fake/"
     enable_api: true
     ring:
         kvstore:
@@ -993,6 +993,16 @@ read:
   # -- Additional selector labels for each `read` pod
   selectorLabels: {}
   service:
+    # -- Port of the read service
+    port: 3100
+    # -- Type of the read service
+    type: LoadBalancer
+    # -- ClusterIP of the read service
+    clusterIP: null
+    # -- (int) Node port if service type is NodePort
+    nodePort: null
+    # -- Load balancer IPO address if service type is LoadBalancer
+    loadBalancerIP: null
     # -- Annotations for read Service
     annotations: {}
     # -- Additional labels for read Service
