@@ -48,8 +48,8 @@ data:
               summary: ODBC communication failure in {{ $key }}
     {{- end}}
     - name: nr1 Mount Failed rules
-    {{- range $key, $val := .Values.nr1MountFailedHosts}}
       rules:
+    {{- range $key, $val := .Values.nr1MountFailedHosts}}
         - alert: NR1 mount Failed - {{ $key }}
           expr: |
             count_over_time({hostname="{{ $val }}"}  |~ "\".*Failed to write to file in directory /etc/ams/agent-mount-point/catalog-archive.*\"" [1m] ) > 0
@@ -61,8 +61,8 @@ data:
               summary: NR1 mount getting failed in {{ $key }} 
     {{- end }}
     - name: ue / ulp rules
-    {{- range $key, $val := .Values.ueHosts }}
       rules:
+    {{- range $key, $val := .Values.ueHosts }}
         - alert: UE Sync Failed - {{ $key }}
           expr: |
             count_over_time({hostname="{{ $val }}"}  |~ "message: \"*Unable to download settings file, Sync Failed*\"" [1m] ) > 0
@@ -84,8 +84,9 @@ data:
               summary: UE connection getting failed in {{ $key }}
     {{- end }}
     - name: update Locations rules
-    {{- range $key, $val := .Values.updateLocationHosts }}
       rules:
+    {{- range $key, $val := .Values.updateLocationHosts }}
+
         - alert: Update Location Failed in RT - {{ $key }}
           expr: |
             count_over_time({hostname="{{ $val }}"}  |~ "message: \".*UpdateLocationMd5 failed, but updates to other databases will be committed.*\"" [1m] ) > 0
@@ -97,8 +98,8 @@ data:
               summary: Update location getting failed in {{ $key }}
     {{- end }}
     - name: logix Web hosts rules
-    {{- range $key, $val := .Values.logixWebHosts}}
       rules:
+    {{- range $key, $val := .Values.logixWebHosts}}
         - alert: Semaphore Error - {{ $key }}
           expr: |
             count_over_time({hostname="{{ $val }}"}  |~ "message: \".*The semaphore timeout period has expired.*\"" [1m] ) > 0
@@ -110,8 +111,8 @@ data:
               summary: The semaphore timeout period has expired in {{ $key }} 
     {{- end }}
     - name: Logix Agent rules
-    {{- range $key, $val := .Values.logixAgentsHosts }}
       rules:
+    {{- range $key, $val := .Values.logixAgentsHosts }}
         - alert: Max pool Connections Reached - {{ $key }}
           expr: |
             count_over_time({hostname="{{ $val }}"}  |~ "message: \".*The timeout period elapsed prior to obtaining a connection from the pool.*\"" [1m] ) > 0
