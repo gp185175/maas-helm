@@ -272,9 +272,7 @@ configAnnotations: {}
 config:
   enabled: true
   global: 
-    resolve_timeout: 5m
-    # slack_api_url: 
-    # slack_api_url: 
+    resolve_timeout: 5m 
 
   templates:
     - '/etc/alertmanager/*.tmpl'
@@ -282,7 +280,7 @@ config:
   receivers:
     - name: slack
       slack_configs:
-      # - api_url: 
+      - api_url:  https://hooks.slack.com/services/#########/######
         send_resolved: true
         color: '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
         title: '{{ template "slack.default.title" . }}'
@@ -302,7 +300,7 @@ config:
         footer: "demo-dev-alertmanager"  
     - name: slack_critical
       slack_configs:
-      # - api_url: ##
+      - api_url:  https://hooks.slack.com/services/#########/######
         send_resolved: true
         color: '{{ if eq .Status "firing" }}danger{{ else }}good{{ end }}'
         title: '{{ template "slack.default.title" . }}'
