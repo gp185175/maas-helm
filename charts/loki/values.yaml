@@ -993,16 +993,6 @@ read:
   # -- Additional selector labels for each `read` pod
   selectorLabels: {}
   service:
-    # -- Port of the read service
-    port: 3100
-    # -- Type of the read service
-    type: LoadBalancer
-    # -- ClusterIP of the read service
-    clusterIP: null
-    # -- (int) Node port if service type is NodePort
-    nodePort: null
-    # -- Load balancer IPO address if service type is LoadBalancer
-    loadBalancerIP: null
     # -- Annotations for read Service
     annotations: {}
     # -- Additional labels for read Service
@@ -1151,7 +1141,7 @@ backend:
       requiredDuringSchedulingIgnoredDuringExecution:
         - labelSelector:
             matchLabels:
-              {{- include "loki.backendSelectorLabels" . | nindent 10 }}   
+              {{- include "loki.backendSelectorLabels" . | nindent 10 }}
           topologyKey: kubernetes.io/hostname
   # -- DNS config for backend pods
   dnsConfig: {}

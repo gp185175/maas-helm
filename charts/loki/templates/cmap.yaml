@@ -56,8 +56,8 @@ data:
           for: 30s
           labels:
               severity: medium
-               error: NR1_MOUNT_FAILED
-           annotations:
+              error: NR1_MOUNT_FAILED
+          annotations:
               summary: NR1 mount getting failed in {{ $key }} 
     {{- end }}
     - name: ue / ulp rules
