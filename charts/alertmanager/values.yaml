@@ -279,6 +279,24 @@ config:
   templates:
     - '/etc/alertmanager/*.tmpl'
 
+  route:
+    group_by: ['severity']
+    group_wait: 30s
+    group_interval: 1m
+    repeat_interval: 6h
+    receiver: slack
+    routes:
+      - receiver: "slack"
+        grop_wait: 30s
+        matchers:
+        -  severity: medium
+        continue: true
+      - receiver: "slack_critical"
+        group_wait: 30s
+        matchers:
+        -  severity: critical
+        continue: true
+
   receivers:
     - name: slack
       slack_configs:
@@ -320,24 +338,6 @@ config:
         icon_emoji: '{{ template "slack.default.iconemoji" . }}'
         icon_url: '{{ template "slack.default.iconurl" . }}'  
         footer: "demo-dev-alertmanager"
-  route:
-    group_by: ['severity']
-    group_wait: 30s
-    group_interval: 1m
-    repeat_interval: 6h
-    receiver: slack
-    routes:
-      - receiver: "slack"
-        grop_wait: 30s
-        matchers:
-        -  severity: medium
-        continue: true
-      
-      - receiver: "slack_critical"
-        group_wait: 30s
-        matchers:
-        -  severity: critical
-        continue: true
 
 ## Monitors ConfigMap changes and POSTs to a URL
 ## Ref: https://github.com/prometheus-operator/prometheus-operator/tree/main/cmd/prometheus-config-reloader

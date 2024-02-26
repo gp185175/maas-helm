@@ -10,7 +10,7 @@ data:
       rules:
         - alert: IPL Failed - {{ $key }}
           expr: |
-            count_over_time({namespace="{{ $val }}"}  |~ ".*IPL_FAIL.*" [1m] ) > 0
+            count_over_time({namespace="{{ $val }}"}  |~ "log\": \".*IPL_FAIL.*\" [1m] ) > 0
           for: 30s
           labels:
               severity: critical
@@ -19,7 +19,7 @@ data:
               summary: IPL_FAIL in {{ $key }} 
         - alert: IF Failed - {{ $key }}
           expr: |
-            count_over_time({namespace="{{ $val }}"}  |~ "log: \"*FETCH_FAIL*\"" [1m] ) > 0
+            count_over_time({namespace="{{ $val }}"}  |~ "log\": \".*FETCH_FAIL.*\" [1m] ) > 0
           for: 30s
           labels:
               severity: critical
@@ -29,7 +29,7 @@ data:
         
         - alert: SERIAL Failed - {{ $key }}
           expr: |
-            count_over_time({namespace="{{ $val }}"}  |~ "\"log: \".*SERIAL_FAIL.*\"" [1m] ) > 0
+            count_over_time({namespace="{{ $val }}"}  |~ "log\": \".*SERIAL_FAIL.*\" [1m] ) > 0
           for: 30s
           labels:
               severity: critical
@@ -39,7 +39,7 @@ data:
         
         - alert: ODBC Error - {{ $key }}
           expr: |
-            count_over_time({namespace="{{ $val }}"}  |~ "log: \".*error [Microsoft][ODBC Driver 18 for SQL Server]Communication link failure.*\"" [1m] ) > 0
+            count_over_time({namespace="{{ $val }}"}  |~ "log\": \".*error \[Microsoft\]\[ODBC Driver 18 for SQL Server\]Communication link failure.*\" [1m] ) > 0
           for: 30s
           labels:
               severity: critical
@@ -52,7 +52,7 @@ data:
     {{- range $key, $val := .Values.nr1MountFailedHosts}}
         - alert: NR1 mount Failed - {{ $key }}
           expr: |
-            count_over_time({hostname="{{ $val }}"}  |~ "\".*Failed to write to file in directory /etc/ams/agent-mount-point/catalog-archive.*\"" [1m] ) > 0
+            count_over_time({hostname="{{ $val }}"}  |~ "log\": \".*Failed to write to file in directory \/etc\/ams\/agent-mount-point\/catalog-archive.*\" [1m] ) > 0
           for: 30s
           labels:
               severity: medium
@@ -65,7 +65,7 @@ data:
     {{- range $key, $val := .Values.ueHosts }}
         - alert: UE Sync Failed - {{ $key }}
           expr: |
-            count_over_time({hostname="{{ $val }}"}  |~ "message: \"*Unable to download settings file, Sync Failed*\"" [1m] ) > 0
+            count_over_time({hostname="{{ $val }}"}  |~ "message\": \".*Unable to download settings file, Sync Failed.*\" [1m] ) > 0
           for: 30s
           labels:
               severity: medium
@@ -75,7 +75,7 @@ data:
       
         - alert: ULP UE Connection Failed - {{ $key }}
           expr: |
-            count_over_time({hostname="{{ $val }}"}  |~ "message: \".*AMS Server Socket comm error connecting to MASTER server*\"" [1m] ) > 0
+            count_over_time({hostname="{{ $val }}"}  |~ "message\": \".*AMS Server Socket comm error connecting to MASTER server.*\" [1m] ) > 0
           for: 30s
           labels:
               severity: medium
@@ -89,7 +89,7 @@ data:
 
         - alert: Update Location Failed in RT - {{ $key }}
           expr: |
-            count_over_time({hostname="{{ $val }}"}  |~ "message: \".*UpdateLocationMd5 failed, but updates to other databases will be committed.*\"" [1m] ) > 0
+            count_over_time({hostname="{{ $val }}"}  |~ "message\": \".*UpdateLocationMd5 failed, but updates to other databases will be committed.*\" [1m] ) > 0
           for: 30s
           labels:
               severity: medium
@@ -102,7 +102,7 @@ data:
     {{- range $key, $val := .Values.logixWebHosts}}
         - alert: Semaphore Error - {{ $key }}
           expr: |
-            count_over_time({hostname="{{ $val }}"}  |~ "message: \".*The semaphore timeout period has expired.*\"" [1m] ) > 0
+            count_over_time({hostname="{{ $val }}"}  |~ "message\": \".*The semaphore timeout period has expired.*\" [1m] ) > 0
           for: 30s
           labels:
               severity: medium
@@ -115,7 +115,7 @@ data:
     {{- range $key, $val := .Values.logixAgentsHosts }}
         - alert: Max pool Connections Reached - {{ $key }}
           expr: |
-            count_over_time({hostname="{{ $val }}"}  |~ "message: \".*The timeout period elapsed prior to obtaining a connection from the pool.*\"" [1m] ) > 0
+            count_over_time({hostname="{{ $val }}"}  |~ "message\": \".*The timeout period elapsed prior to obtaining a connection from the pool.*\" [1m] ) > 0
           for: 30s
           labels:
               severity: medium
@@ -124,7 +124,7 @@ data:
               summary: Max pool Connections Reached in {{ $key }}
         - alert: Semaphore Error - {{ $key }}
           expr: |
-            count_over_time({hostname="{{ $val }}"}  |~ "message: \".*The semaphore timeout period has expired.*\"" [1m] ) > 0
+            count_over_time({hostname="{{ $val }}"}  |~ "message\": \".*The semaphore timeout period has expired.*\" [1m] ) > 0
           for: 30s
           labels:
               severity: medium
