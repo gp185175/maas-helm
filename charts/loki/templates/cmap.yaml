@@ -39,7 +39,7 @@ data:
         
         - alert: ODBC Error - {{ $key }}
           expr: |
-            count_over_time({namespace="{{ $val }}"}  |~ "log\": \".*error \[Microsoft\]\[ODBC Driver 18 for SQL Server\]Communication link failure.*\"" [1m] ) > 0
+            count_over_time({namespace="{{ $val }}"}  |~ "log\": \".*error \\[Microsoft]\\[ODBC Driver 18 for SQL Server]Communication link failure.*\"" [1m] ) > 0
           for: 30s
           labels:
               severity: critical
