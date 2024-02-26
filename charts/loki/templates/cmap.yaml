@@ -52,7 +52,7 @@ data:
     {{- range $key, $val := .Values.nr1MountFailedHosts}}
         - alert: NR1 mount Failed - {{ $key }}
           expr: |
-            count_over_time({hostname="{{ $val }}"}  |~ "log\": \".*Failed to write to file in directory \/etc\/ams\/agent-mount-point\/catalog-archive.*\"" [1m] ) > 0
+            count_over_time({hostname="{{ $val }}"}  |~ "log\": \".*Failed to write to file in directory /etc/ams/agent-mount-point/catalog-archive.*\"" [1m] ) > 0
           for: 30s
           labels:
               severity: medium
