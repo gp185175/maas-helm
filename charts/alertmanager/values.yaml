@@ -280,13 +280,13 @@ config:
     - '/etc/alertmanager/*.tmpl'
 
   route:
-    group_by: ['severity']
+    group_by: ['severity','job']
     group_wait: 30s
     group_interval: 1m
     repeat_interval: 6h
     receiver: slack
     routes:
-      - receiver: "slack"
+      - receiver: "slack-dev"
         group_wait: 30s
         matchers:
         - severity= "medium"
@@ -298,7 +298,7 @@ config:
         continue: true
 
   receivers:
-    - name: slack
+    - name: slack-dev
       slack_configs:
       # - api_url: 
         send_resolved: true
