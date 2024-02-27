@@ -287,14 +287,14 @@ config:
     receiver: slack
     routes:
       - receiver: "slack"
-        grop_wait: 30s
+        group_wait: 30s
         matchers:
-        -  severity: medium
+        - severity= "medium"
         continue: true
       - receiver: "slack_critical"
         group_wait: 30s
         matchers:
-        -  severity: critical
+        - severity="critical"
         continue: true
 
   receivers:
