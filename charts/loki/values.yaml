@@ -300,8 +300,8 @@ loki:
       requestTimeout: "0s"
       enableHttp2: true
     azure:
-      accountName: maaslokistorage
-      accountKey: "Qu3PvOCiDMo1xBR6sRWIBaVgGnMrxomCWsG7JztiBF/lLqpeqn0QeyZ+h1wP/OZBiJJA6vpPIm5P+AStd9eTWA=="
+      accountName: testlifecycle
+      accountKey: "TKGNJO/saEwvloIREOHnCEeWu/lhNVIhzvoxLKtsU2Bv+LBLe84EtNClzcz/r6JsdY8wG+R1w9/9+ASterDczQ=="
       container_name: lokilogs
       useManagedIdentity: false
       useFederatedToken: false
