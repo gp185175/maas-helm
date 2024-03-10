@@ -692,12 +692,21 @@ dashboardProviders:
     providers:
     - name: 'default'
       orgId: 1
-      folder: ''
+      folder: 'default'
       type: file
       disableDeletion: false
       editable: true
       options:
         path: /var/lib/grafana/dashboards/default
+        foldersFromFilesStructure: true
+    - name: 'demo'
+      orgId: 2
+      folder: 'demo'
+      type: file
+      disableDeletion: false
+      editable: true
+      options:
+        path: /var/lib/grafana/dashboards/demo
         foldersFromFilesStructure: true
 
 ## Configure grafana dashboard to import
@@ -710,6 +719,7 @@ dashboards:
   default:
     custom-dashboard:
       file: dashboards/custom-dashboard.json
+  demo:
     demo:
       file: dashboards/demo.json
   #   some-dashboard:
