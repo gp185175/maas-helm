@@ -935,6 +935,43 @@ entries:
           url: https://github.com/grafana/grafana
     apiVersion: v2
     appVersion: 10.2.2
+    created: "2024-03-10T13:08:48.595892198Z"
+    description: The leading tool for querying and visualizing time series and metrics.
+    digest: 0061927683a614451d02294cab496e85daa1ce5f9eef02ab64d9dbd44aba2bcc
+    home: https://grafana.net
+    icon: https://raw.githubusercontent.com/grafana/grafana/master/public/img/logo_transparent_400x.png
+    keywords:
+    - monitoring
+    - metric
+    kubeVersion: ^1.8.0-0
+    maintainers:
+    - email: zanhsieh@gmail.com
+      name: zanhsieh
+    - email: rluckie@cisco.com
+      name: rtluckie
+    - email: maor.friedman@redhat.com
+      name: maorfr
+    - email: miroslav.hadzhiev@gmail.com
+      name: Xtigyro
+    - email: mail@torstenwalter.de
+      name: torstenwalter
+    name: grafana
+    sources:
+    - https://github.com/grafana/grafana
+    - https://github.com/grafana/helm-charts
+    type: application
+    urls:
+    - https://github.com/gp185175/maas-helm/releases/download/grafana-7.0.28/grafana-7.0.28.tgz
+    version: 7.0.28
+  - annotations:
+      artifacthub.io/license: AGPL-3.0-only
+      artifacthub.io/links: |
+        - name: Chart Source
+          url: https://github.com/grafana/helm-charts
+        - name: Upstream Project
+          url: https://github.com/grafana/grafana
+    apiVersion: v2
+    appVersion: 10.2.2
     created: "2023-12-22T11:00:56.73041129Z"
     description: The leading tool for querying and visualizing time series and metrics.
     digest: a4e46234e87c923a191e71f98b44c80fc4f7a308e903fe6ea2c977871ebf0bd2
@@ -4017,4 +4054,4 @@ entries:
     urls:
     - https://github.com/gp185175/maas-helm/releases/download/loki-5.41.3/loki-5.41.3.tgz
     version: 5.41.3
-generated: "2024-03-01T08:49:30.901206489Z"
+generated: "2024-03-10T13:08:48.596192204Z"
