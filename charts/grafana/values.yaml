@@ -710,6 +710,8 @@ dashboards:
   default:
     custom-dashboard:
       file: dashboards/custom-dashboard.json
+    demo:
+      file: dashboards/demo.json
   #   some-dashboard:
   #     json: |
   #       $RAW_JSON
