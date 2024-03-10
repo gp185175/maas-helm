@@ -743,7 +743,7 @@ dashboards: {}
 ##     RAW_JSON
 ##
 dashboardsConfigMaps:
-  default: "grafana-dashboards"  
+  default: "grafana-dashboards" 
 
 ## Grafana's primary configuration
 ## NOTE: values in map will be converted to ini format
