@@ -698,6 +698,7 @@ dashboardProviders:
       editable: true
       options:
         path: /var/lib/grafana/dashboards/default
+        foldersFromFilesStructure: true
 
 ## Configure grafana dashboard to import
 ## NOTE: To use dashboards you must also enable/configure dashboardProviders
@@ -705,13 +706,13 @@ dashboardProviders:
 ##
 ## dashboards per provider, use provider name as key.
 ##
-dashboards: {}
-  # default:
+dashboards:
+  default:
+    custom-dashboard:
+      file: dashboards/custom-dashboard.json
   #   some-dashboard:
   #     json: |
   #       $RAW_JSON
-  #   custom-dashboard:
-  #     file: dashboards/custom-dashboard.json
   #   prometheus-stats:
   #     gnetId: 2
   #     revision: 2
@@ -742,8 +743,8 @@ dashboards: {}
 ##   example-dashboard.json: |
 ##     RAW_JSON
 ##
-dashboardsConfigMaps:
-  default: "grafana-dashboards" 
+dashboardsConfigMaps: {}
+  # default: "grafana-dashboards" 
 
 ## Grafana's primary configuration
 ## NOTE: values in map will be converted to ini format
