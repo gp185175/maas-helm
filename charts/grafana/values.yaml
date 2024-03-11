@@ -700,7 +700,7 @@ dashboardProviders:
         path: /var/lib/grafana/dashboards/default
         foldersFromFilesStructure: true
     - name: 'demo'
-      orgId: 2
+      orgId: 1
       folder: 'demo'
       type: file
       disableDeletion: false
@@ -720,7 +720,7 @@ dashboards:
     custom-dashboard:
       file: dashboards/custom-dashboard.json
   demo:
-    demo:
+    demo-dashboard:
       file: dashboards/demo.json
   #   some-dashboard:
   #     json: |
