@@ -995,7 +995,8 @@ read:
   selectorLabels: {}
   service:
     # -- Annotations for read Service
-    annotations: {}
+    annotations: 
+      service.beta.kubernetes.io/azure-load-balancer-internal: "true"
     # -- Additional labels for read Service
     labels: {}
   # -- Comma-separated list of Loki modules to load for the read
