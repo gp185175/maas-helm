@@ -986,7 +986,7 @@ read:
   priorityClassName: null
   # -- Annotations for read deployment
   annotations: {}
-    #service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+  # service.beta.kubernetes.io/azure-load-balancer-internal: "true"
   # -- Annotations for read pods
   podAnnotations: {}
   # -- Additional labels for each `read` pod
@@ -996,8 +996,7 @@ read:
   service:
     # -- Annotations for read Service
     annotations: {}
-      #service.beta.kubernetes.io/azure-load-balancer-internal: "true"
-    }
+    # service.beta.kubernetes.io/azure-load-balancer-internal: "true"
     # -- Additional labels for read Service
     labels: {}
   # -- Comma-separated list of Loki modules to load for the read
