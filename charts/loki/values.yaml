@@ -1264,7 +1264,7 @@ singleBinary:
 # If you enable this, make sure to disable the gateway.
 # You'll need to supply authn configuration for your ingress controller.
 ingress:
-  enabled: true
+  enabled: false
   ingressClassName: "monitoring-cluster-issuer"
   annotations: 
     nginx.ingress.kubernetes.io/auth-type: basic
