@@ -985,8 +985,8 @@ read:
   # -- The name of the PriorityClass for read pods
   priorityClassName: null
   # -- Annotations for read deployment
-  annotations: 
-    service.beta.kubernetes.io/azure-load-balancer-internal: "true"
+  annotations: {}
+    #service.beta.kubernetes.io/azure-load-balancer-internal: "true"
   # -- Annotations for read pods
   podAnnotations: {}
   # -- Additional labels for each `read` pod
