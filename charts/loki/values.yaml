@@ -1265,13 +1265,13 @@ singleBinary:
 # You'll need to supply authn configuration for your ingress controller.
 ingress:
   enabled: true
-  ingressClassName: "monitoring-cluster-issuer"
+  ingressClassName: "azure-application-gateway"
   annotations: 
     nginx.ingress.kubernetes.io/auth-type: basic
     nginx.ingress.kubernetes.io/auth-secret: loki-distributed-basic-auth
     nginx.ingress.kubernetes.io/auth-secret-type: auth-map
     kubernetes.io/ingress.class: azure/application-gateway
-    appgw.ingress.kubernetes.io/backend-hostname: "maas-lokidev.preprod.ncrsaas.com"
+    appgw.ingress.kubernetes.io/backend-hostname: "retloy-loki.preprod.ncrsaas.com"
   # nginx.ingress.kubernetes.io/configuration-snippet: |
   #      proxy_set_header X-Scope-OrgID $remote_user;
   labels: {}
@@ -1434,9 +1434,9 @@ gateway:
   # Gateway ingress configuration
   ingress:
     # -- Specifies whether an ingress for the gateway should be created
-    enabled: false
+    enabled: true
     # -- Ingress Class Name. MAY be required for Kubernetes versions >= 1.18
-    ingressClassName: ""
+    ingressClassName: "azure/application-gateway"
     # -- Annotations for the gateway ingress
     annotations: {}
     # -- Labels for the gateway ingress
