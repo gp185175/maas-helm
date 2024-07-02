@@ -1264,12 +1264,14 @@ singleBinary:
 # If you enable this, make sure to disable the gateway.
 # You'll need to supply authn configuration for your ingress controller.
 ingress:
-  enabled: false
+  enabled: true
   ingressClassName: "monitoring-cluster-issuer"
   annotations: 
     nginx.ingress.kubernetes.io/auth-type: basic
     nginx.ingress.kubernetes.io/auth-secret: loki-distributed-basic-auth
     nginx.ingress.kubernetes.io/auth-secret-type: auth-map
+    kubernetes.io/ingress.class: azure/application-gateway
+    appgw.ingress.kubernetes.io/backend-hostname: "maas-lokidev.preprod.ncrsaas.com"
   # nginx.ingress.kubernetes.io/configuration-snippet: |
   #      proxy_set_header X-Scope-OrgID $remote_user;
   labels: {}
@@ -1298,8 +1300,7 @@ ingress:
       - /prometheus/api/v1/alerts
   # -- Hosts configuration for the ingress, passed through the `tpl` function to allow templating
   hosts:
-    - 20.221.253.229
-    - 40.116.64.28
+    - retloy-loki.preprod.ncrsaas.com
   # -- TLS configuration for the ingress. Hosts passed through the `tpl` function to allow templating
   tls: []
 #    - hosts:
