@@ -1265,7 +1265,7 @@ singleBinary:
 # You'll need to supply authn configuration for your ingress controller.
 ingress:
   enabled: true
-  ingressClassName: "azure-application-gateway"
+  ingressClassName: azure-application-gateway
   annotations: 
     nginx.ingress.kubernetes.io/auth-type: basic
     nginx.ingress.kubernetes.io/auth-secret: loki-distributed-basic-auth
@@ -1436,7 +1436,7 @@ gateway:
     # -- Specifies whether an ingress for the gateway should be created
     enabled: true
     # -- Ingress Class Name. MAY be required for Kubernetes versions >= 1.18
-    ingressClassName: "azure/application-gateway"
+    ingressClassName: azure/application-gateway
     # -- Annotations for the gateway ingress
     annotations: 
       nginx.ingress.kubernetes.io/auth-type: basic
