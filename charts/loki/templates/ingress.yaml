@@ -16,7 +16,7 @@ metadata:
   {{- end }}
 spec:
   {{- if and $ingressSupportsIngressClassName .Values.ingress.ingressClassName }}
-  ingressClassName: azure/application-gateway
+  ingressClassName: {{ .Values.ingress.ingressClassName }}
   {{- end -}}
   {{- if .Values.ingress.tls }}
   tls:
