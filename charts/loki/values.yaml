@@ -1298,6 +1298,7 @@ ingress:
       - /loki/api/v1/rules
       - /prometheus/api/v1/rules
       - /prometheus/api/v1/alerts
+  pathType: ImplementationSpecific  
   # -- Hosts configuration for the ingress, passed through the `tpl` function to allow templating
   hosts:
     - retloy-loki.preprod.ncrsaas.com
@@ -1451,6 +1452,7 @@ gateway:
       - host: retloy-loki.preprod.ncrsaas.com
         paths:
           - path: /
+        pathType: ImplementationSpecific
             # -- pathType (e.g. ImplementationSpecific, Prefix, .. etc.) might also be required by some Ingress Controllers
             # pathType: Prefix
     # -- TLS configuration for the gateway ingress. Hosts passed through the `tpl` function to allow templating
