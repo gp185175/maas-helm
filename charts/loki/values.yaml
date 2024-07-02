@@ -1438,12 +1438,17 @@ gateway:
     # -- Ingress Class Name. MAY be required for Kubernetes versions >= 1.18
     ingressClassName: "azure/application-gateway"
     # -- Annotations for the gateway ingress
-    annotations: {}
+    annotations: 
+      nginx.ingress.kubernetes.io/auth-type: basic
+      nginx.ingress.kubernetes.io/auth-secret: loki-distributed-basic-auth
+      nginx.ingress.kubernetes.io/auth-secret-type: auth-map
+      kubernetes.io/ingress.class: azure/application-gateway
+      appgw.ingress.kubernetes.io/backend-hostname: "retloy-loki.preprod.ncrsaas.com"
     # -- Labels for the gateway ingress
     labels: {}
     # -- Hosts configuration for the gateway ingress, passed through the `tpl` function to allow templating
     hosts:
-      - host: gateway.loki.example.com
+      - host: retloy-loki.preprod.ncrsaas.com
         paths:
           - path: /
             # -- pathType (e.g. ImplementationSpecific, Prefix, .. etc.) might also be required by some Ingress Controllers
@@ -1456,11 +1461,11 @@ gateway:
   # Basic auth configuration
   basicAuth:
     # -- Enables basic authentication for the gateway
-    enabled: false
+    enabled: true
     # -- The basic auth username for the gateway
-    username: null
+    username: admin
     # -- The basic auth password for the gateway
-    password: null
+    password: admin
     # -- Uses the specified users from the `loki.tenants` list to create the htpasswd file
     # if `loki.tenants` is not set, the `gateway.basicAuth.username` and `gateway.basicAuth.password` are used
     # The value is templated using `tpl`. Override this to use a custom htpasswd, e.g. in case the default causes
