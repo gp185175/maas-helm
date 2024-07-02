@@ -1457,7 +1457,7 @@ gateway:
     tls:
       - secretName: loki-gateway-tls
         hosts:
-          - gateway.loki.example.com
+          - retloy-loki.preprod.ncrsaas.com
   # Basic auth configuration
   basicAuth:
     # -- Enables basic authentication for the gateway
