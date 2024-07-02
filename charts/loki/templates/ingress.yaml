@@ -36,6 +36,6 @@ spec:
       http:
         paths:
           {{- include "loki.ingress.servicePaths" $ | indent 10}}
-        pathType: ImplementationSpecific
+        pathType: Prefix
     {{- end }}
 {{- end }}
